@@ -12,6 +12,7 @@
   	<spring.version>4.2.0.RELEASE</spring.version>
   	<mybatis.version>3.3.0</mybatis.version>
   	<mybatis-spring.version>1.2.3</mybatis-spring.version>
+ 	<druid.version>1.0.15</druid.version>
  	<mysql-connector-java.version>5.1.36</mysql-connector-java.version>
  	<logback.version>1.1.3</logback.version>
  	<slf4j.version>1.7.12</slf4j.version>
@@ -86,6 +87,12 @@
     	<artifactId>mybatis-spring</artifactId>
     	<version>${mybatis-spring.version}</version>
     </dependency>
+    <!-- Druid数据源包 -->
+    <dependency>
+    	<groupId>com.alibaba</groupId>
+    	<artifactId>druid</artifactId>
+    	<version>${druid.version}</version>
+    </dependency>
     <!-- MySQL驱动包 -->
     <dependency>
     	<groupId>mysql</groupId>
@@ -117,6 +124,41 @@
   </dependencies>
   <build>
     <finalName>zzq-back</finalName>
+    <plugins>
+       <plugin>
+           <groupId>com.github.eirslett</groupId>
+           <artifactId>frontend-maven-plugin</artifactId>
+           <version>0.0.15</version>
+           <executions>
+               <execution>
+                   <id>install node and npm</id>
+                   <goals>
+                       <goal>install-node-and-npm</goal>
+                   </goals>
+                   <phase>generate-resources</phase>
+                   <configuration>
+                       <npmVersion>1.4.12</npmVersion>
+                       <nodeVersion>v0.10.29</nodeVersion>
+                   </configuration>
+               </execution>
+               <execution>
+                   <id>npm install</id>
+                   <goals>
+                       <goal>npm</goal>
+                   </goals>
+                   <configuration>
+                       <arguments>install</arguments>
+                   </configuration>
+               </execution>
+               <execution>
+                   <id>gulp build</id>
+                   <goals>
+                       <goal>gulp</goal>
+                   </goals>
+               </execution>
+           </executions>
+       </plugin>
+    </plugins>
     <resources>
     	<resource>
     		<directory>src/main/java</directory>
