@@ -161,4 +161,44 @@
 		</property>
 		<property name="defaultTargetDataSource" ref="writeDataSource"></property>
 	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>		
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<property name="mapperLocations" value="classpath*:com/zzq/back/mapper/*.xml"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zzq.back.dao"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+	
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="txManager"
+		proxy-target-class="true"/>
+		
+	<bean id="transactionAwareDataSourceProxy"
+		class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	
+	<!-- 激活自动代理功能 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	
+	<!-- 配置数据库注解aop -->
+	<bean id="dataSourceProcessor" class="com.zzq.back.common.datasource.DynamicDataSourceProcessor"></bean>
+	<aop:config>
+		<aop:pointcut id="txPointcut"
+			expression="execution(* com.zzq.back.service..*.*(..))"></aop:pointcut>
+		<!-- 不使用xml配置事务，统一使用注解配置事务
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+		-->
+		<aop:aspect id="processor" ref="dataSourceProcessor">
+			<aop:around pointcut-ref="txPointcut" method="around"></aop:around>
+		</aop:aspect>
+	</aop:config>
 </beans>
