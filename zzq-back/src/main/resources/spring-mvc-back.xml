@@ -24,4 +24,12 @@
 		p:prefix="/WEB-INF/view/" p:suffix=".jsp">
 	</bean>
 	
+	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
+	<mvc:default-servlet-handler />
+	
+	<!-- 开启aop代理 -->
+	<aop:aspectj-autoproxy />
+
+	<aop:config proxy-target-class="true"/>
+	
 </beans>
