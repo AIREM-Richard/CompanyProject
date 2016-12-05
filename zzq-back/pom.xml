@@ -18,6 +18,9 @@
  	<logback.version>1.1.3</logback.version>
  	<slf4j.version>1.7.12</slf4j.version>
  	<aspectj.version>1.8.1</aspectj.version>
+ 	<project.build.frontend.version>0.0.15</project.build.frontend.version>
+    <project.build.node.version>v0.10.29</project.build.node.version>
+    <project.build.npm.version>1.4.12</project.build.npm.version>
   </properties>
   
   <dependencies>
@@ -141,7 +144,7 @@
        <plugin>
            <groupId>com.github.eirslett</groupId>
            <artifactId>frontend-maven-plugin</artifactId>
-           <version>0.0.15</version>
+           <version>${project.build.frontend.version}</version>
            <executions>
                <execution>
                    <id>install node and npm</id>
@@ -150,8 +153,8 @@
                    </goals>
                    <phase>generate-resources</phase>
                    <configuration>
-                       <npmVersion>1.4.12</npmVersion>
-                       <nodeVersion>v0.10.29</nodeVersion>
+                   	   <nodeVersion>${project.build.node.version}</nodeVersion>
+                       <npmVersion>${project.build.npm.version}</npmVersion>
                    </configuration>
                </execution>
                <execution>
