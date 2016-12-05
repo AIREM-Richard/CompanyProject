@@ -16,13 +16,16 @@
 		<file>../logs/log-debug.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!--在工程目录下自动生成logs文件夹 -->
-			<FileNamePattern>../logs/log-debug.%d{yyy-MM-dd}.%i.log</FileNamePattern>
+			<FileNamePattern>../logs/log-debug.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
 			<!-- 最多100个文件 -->
 			<MaxHistory>100</MaxHistory>
-			<timeBaseFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>100MB</maxFileSize>
-			</timeBaseFileNamingAndTriggeringPolicy>
+			</timeBasedFileNamingAndTriggeringPolicy>
 		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+		</layout>
 		<!-- 过滤器，只记录INFO级别的日志 -->
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>DEBUG</level>
