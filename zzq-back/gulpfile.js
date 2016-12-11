@@ -1,63 +1,37 @@
+"use strict";
 var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
-    gp_concat = require('gulp-concat'),
-    gp_rename = require('gulp-rename'),
-    gp_uglify = require('gulp-uglify'),
-    connect = require('gulp-connect'),
-    protractor = require("gulp-protractor").protractor;
+	sourcemaps = require('gulp-sourcemaps'),
+	sass = require('gulp-sass'),
+	autoprefixer = require('gulp-autoprefixer'), //autoprefixer要和es6-promise一起才能使用
+	cssnano = require('gulp-cssnano'),
+	gp_concat = require('gulp-concat');
+require('es6-promise').polyfill();
 
 var paths = {
   webapp : 'src/main/webapp/',
-  src_js : 'src/main/webapp/static/js/**/*.js',
-  src_css : 'src/main/webapp/static/css/**/*.css',
-  src_html : 'src/main/webapp/static/html/**/*.html',
-  target_js : 'src/main/webapp/static/public/js/',
-  target_css : 'src/main/webapp/static/public/css/',
-  target_html : 'src/main/webapp/static/public/html/'
+  src_sass : 'src/main/webapp/static/sass/**/*.scss',
+  src_js : 'src/main/webapp/static/javascript/**/*.js',
+  plugin : 'src/main/webapp/static/plugin/',
+  target_css : 'src/main/webapp/static/css/',
+  target_js : 'src/main/webapp/static/js/'
 };
-
-gulp.task('jshint', function () {
-  return gulp.src(['gulpfile.js', paths.src_js])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+gulp.task('sass', function () {
+  return gulp.src(paths.src_sass)//编译的文件
+  	.pipe(sourcemaps.init())//开始注入前缀
+	.pipe(sass()) //编译scss文件
+	.pipe(autoprefixer()) //加入前缀
+	.pipe(cssnano()) //Minify CSS with cssnano
+	.pipe(sourcemaps.write('.')) //加入源方便调试
+    .pipe(gulp.dest(paths.target_css));//输出到css文件夹
 });
 
-gulp.task('js', function(){
-  return gulp.src(paths.src_js)
-    .pipe(gp_concat('app.concat.js'))
-    //.pipe(gp_rename('app.min.js'))
-    //.pipe(gp_uglify())
+
+gulp.task('base', function() {
+  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.plugin+'jquery/2.1.4/jquery.min.js'])
+    .pipe(gp_concat('base.js'))
     .pipe(gulp.dest(paths.target_js));
 });
 
-gulp.task('css', function() {
-  return gulp.src(paths.src_css)
-    .pipe(gp_concat('style.concat.css'))
-    //.pipe(gp_rename('style.min.css'))
-    .pipe(gulp.dest(paths.target_css));
-});
-
-gulp.task('html', function() {
-  return gulp.src(paths.src_html)
-    .pipe(gulp.dest(paths.target_html));
-});
-
-gulp.task('connect', function() {
-  connect.server({
-    root: 'src/main/webapp',
-    livereload: true,
-    port: 8081
-  });
-});
-
-gulp.task('watch', function () {
-  gulp.watch([paths.webapp + '**/*', '!' + paths.webapp + '{static/public,static/public/**}'], ['build']);
-  gulp.watch(paths.webapp + '**/*', function() {
-    return gulp.src(paths.webapp)
-      .pipe(connect.reload());
-  });
-});
-
-gulp.task('build', ['js', 'css', 'html']);
-gulp.task('run', ['connect', 'watch']);
+gulp.task('js', ['base']);
+gulp.task('build', ['sass','js']);
 gulp.task('default', ['build']);

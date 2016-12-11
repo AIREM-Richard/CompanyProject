@@ -9,5 +9,6 @@
 </head>
 <body>
 欢迎来到后台管理系统
+<a href="${ctx}/customerInfo/list">业主管理</a>
 </body>
 </html>
