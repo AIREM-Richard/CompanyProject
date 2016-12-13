@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/12/10 22:41:38                          */
+/* Created on:     2016/12/13 16:50:18                          */
 /*==============================================================*/
 
 
@@ -35,7 +35,7 @@ drop table if exists t_receivables;
 /*==============================================================*/
 create table sys_dict
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    dict_type_id         bigint(20) comment 'sys_dict_type表的id',
    code                 char(6) comment '字典值编码（唯一）',
    name                 varchar(200) comment '字典值中文名字',
@@ -50,7 +50,7 @@ alter table sys_dict comment '数据字典表';
 /*==============================================================*/
 create table sys_dict_type
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    code                 char(6) comment '字典类型编码（唯一）',
    name                 varchar(200) comment '字典类型中文名称',
    primary key (id)
@@ -64,7 +64,7 @@ alter table sys_dict_type comment '数据字典类型表';
 /*==============================================================*/
 create table sys_office
 (
-   id                   bigint(11) unsigned not null comment '主键',
+   id                   bigint(11) unsigned not null auto_increment comment '主键',
    parent_id            bigint(11) comment '父id（根节点的parentId为0）',
    name                 varchar(20) comment '部门名字',
    primary key (id)
@@ -78,7 +78,7 @@ alter table sys_office comment '公司机构表';
 /*==============================================================*/
 create table sys_user
 (
-   id                   bigint(20) not null comment '主键',
+   id                   bigint(20) not null auto_increment comment '主键',
    staff_no             varchar(20) not null comment '员工工号',
    office_id            bigint(20) not null comment '部门id',
    name                 varchar(20) comment '员工名字',
@@ -93,7 +93,7 @@ alter table sys_user comment '公司员工表';
 /*==============================================================*/
 create table t_activity
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    details              varchar(200) comment '活动内容',
    primary key (id)
 )
@@ -106,7 +106,7 @@ alter table t_activity comment '活动表';
 /*==============================================================*/
 create table t_contract_drawing
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    project_cost_id      bigint(20) comment '工程费用id',
    real_hair            decimal(12,2) comment '实发施工图费用',
    primary key (id)
@@ -119,7 +119,7 @@ alter table t_contract_drawing comment '施工图';
 /*==============================================================*/
 create table t_customer_info
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    name                 varchar(20) not null comment '客户名字',
    sex                  bit(1) comment '客户性别（0：男，1：女）',
    mobile               char(11) comment '客户手机号码',
@@ -135,7 +135,7 @@ alter table t_customer_info comment '客户信息表';
 /*==============================================================*/
 create table t_design_sketch
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    project_cost_id      bigint(20) comment '工程费用id',
    offer                decimal(12,2) comment '效果图报价',
    make                 decimal(12,2) comment '效果图制作费用',
@@ -150,7 +150,7 @@ alter table t_design_sketch comment '效果图';
 /*==============================================================*/
 create table t_engineering_budget
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    project_contract_code char(12) not null comment '合同编号',
    budget_contract_price decimal(12,2) comment '预算合同价',
    new_budget_item      decimal(12,2) comment '预算新增项目',
@@ -167,7 +167,7 @@ alter table t_engineering_budget comment '工程费用预算表';
 /*==============================================================*/
 create table t_engineering_cost
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    project_contract_code char(12) not null comment '合同编号',
    design_sketch_id     bigint(20) comment '效果图费用id',
    contract_drawing_id  bigint(20) comment '施工图费用id',
@@ -192,7 +192,7 @@ alter table t_engineering_cost comment '工程费用表';
 /*==============================================================*/
 create table t_payment
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    payment_dict_code    char(6) comment '付款',
    project_contract_code char(12) not null comment '合同编号',
    payment_date         date comment '付款日期',
@@ -209,7 +209,7 @@ alter table t_payment comment '公司付款表';
 /*==============================================================*/
 create table t_project
 (
-   id                   bigint(20) unsigned not null comment '工程主键',
+   id                   bigint(20) unsigned not null auto_increment comment '工程主键',
    customer_info_id     bigint(20) comment 't_customer_info表id',
    contract_code        char(12) not null comment '合同编号',
    name                 varchar(100) not null comment '工程名字(现在用的是客户的地址作为工程名字)',
@@ -235,7 +235,7 @@ alter table t_project comment '工程信息表';
 /*==============================================================*/
 create table t_receivables
 (
-   id                   bigint(20) unsigned not null comment '主键',
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
    project_contract_code char(12) not null comment '合同编号',
    periods              varchar(20) comment '期数',
    receivable_date      date comment '收款日期',

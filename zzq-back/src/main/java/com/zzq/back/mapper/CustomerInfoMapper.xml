@@ -16,22 +16,6 @@
     <include refid="Base_Column_List" />
     from t_customer_info 
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_customer_info
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_customer_info
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.zzq.back.entity.CustomerInfo" >
-    insert into t_customer_info (id, name, sex, mobile, 
-      detail_address)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{mobile,jdbcType=CHAR}, 
-      #{detailAddress,jdbcType=VARCHAR})
-  </insert>
   <insert id="insertSelective" parameterType="com.zzq.back.entity.CustomerInfo" >
     insert into t_customer_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -68,6 +52,23 @@
         #{detailAddress,jdbcType=VARCHAR},
       </if>
     </trim>
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_customer_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zzq.back.entity.CustomerInfo" >
+    insert into t_customer_info (id, name, sex, mobile, 
+      detail_address)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{mobile,jdbcType=CHAR}, 
+      #{detailAddress,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zzq.back.entity.CustomerInfo" >
     update t_customer_info

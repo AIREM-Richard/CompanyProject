@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="${ctx}/static/css/base.css">
 </head>
 <body>
-	<table>
+	<button class="button">新增</button>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>姓名</th>
@@ -36,5 +37,19 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<form>
+		<label for="">姓名：<input type="text" name="name"></label>
+		<label for="">性别：<input type="radio" name="sex"></label>
+		<label for="">手机号：<input type="text" name="mobile"></label>
+		<label for="">详细地址：<input type="text" name="detailAddress"></label>
+		<a class="button submit">提交</a>
+	</form>
+	<script src="${ctx }/static/js/customer.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//使用EL表达式传入参数
+			customer.list.init({});
+		});
+	</script>
 </body>
 </html>

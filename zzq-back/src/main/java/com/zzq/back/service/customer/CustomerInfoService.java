@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,5 +22,11 @@ public class CustomerInfoService {
 		PageHelper.startPage(pageNum, 20, true);
 		List<CustomerInfo> customerInfoList = customerInfoDao.selectCustomerInfoByParam();
 		return new PageInfo<CustomerInfo>(customerInfoList);
+	}
+	
+	@Transactional
+	public boolean saveCustomerInfo(CustomerInfo customerInfo){
+		customerInfoDao.insertSelective(customerInfo);
+		return true;
 	}
 }

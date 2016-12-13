@@ -7,11 +7,11 @@ import com.zzq.back.entity.CustomerInfo;
 public interface CustomerInfoDao {
 	List<CustomerInfo> selectCustomerInfoByParam();
 	
+	int insertSelective(CustomerInfo record);
+	
     int deleteByPrimaryKey(Long id);
-
+    
     int insert(CustomerInfo record);
-
-    int insertSelective(CustomerInfo record);
 
     CustomerInfo selectByPrimaryKey(Long id);
 

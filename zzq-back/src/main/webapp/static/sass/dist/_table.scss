@@ -1,9 +1,25 @@
 //
 // Tables
 // --------------------------------------------------
-
 .table{
-	>thead{color:red;background:url(../img/5.png);}
-	>body{display:flex;}
+	width: 100%;max-width: 100%;border-bottom: 1px dotted #dbdbdb;
+	>thead{
+		background-color: #fafafa;
+		tr{
+			border: 1px dotted #dbdbdb;border-bottom: 0;height: 50px; line-height: 50px;
+			th{color: #666;}
+		}
+	}
+	>tbody{
+		tr{
+			height: 50px; line-height: 50px; border: 1px dotted #dbdbdb; border-bottom: 0;
+			&:hover{
+				border: 1px solid #5093e1;background-color: #f5faff;
+			}
+			td{
+				text-align: center;
+			}
+		}
+	}
 }
-
+//background:url(../img/5.png);display:flex;
