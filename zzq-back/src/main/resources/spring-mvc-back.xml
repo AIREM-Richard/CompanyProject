@@ -18,6 +18,8 @@
 	
 	<!-- 静态资源处理,css,js,img,plugin,fonts -->
 	<mvc:resources location="/static/" mapping="/static/**"/>
+	<!-- favicon.ico文件不进行拦截处理 -->
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico"/> 
 	
 	<!-- mvc:annotation-driven解决了@Controller注解的使用前提配置 -->
 	<mvc:annotation-driven>

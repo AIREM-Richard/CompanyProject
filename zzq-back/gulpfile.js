@@ -35,12 +35,17 @@ gulp.task('sass', function () {
 });
 
 /*js 合并管理*/
+gulp.task('main', function() {
+	  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'main.js'])
+	    .pipe(gp_concat('main.js'))
+	    .pipe(gulp.dest(paths.target_js));
+	});
 gulp.task('customer', function() {
   return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'customer.js'])
     .pipe(gp_concat('customer.js'))
     .pipe(gulp.dest(paths.target_js));
 });
 
-gulp.task('js', ['customer']);
+gulp.task('js', ['main','customer']);
 gulp.task('build', ['sass','js']);
 gulp.task('default', ['build']);

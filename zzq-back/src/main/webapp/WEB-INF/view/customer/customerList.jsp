@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户信息管理页面</title>
+<link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="${ctx}/static/css/base.css">
 </head>
 <body>

@@ -13,4 +13,9 @@ public class IndexController {
 	public String indexBack(ModelMap model){
 		return "index";
 	}
+	
+	@RequestMapping(value ="/welcome",method = RequestMethod.GET)
+	public String welcome(){
+		return "welcome";
+	}
 }
