@@ -30,6 +30,9 @@ var customer = {
 						}
 					});
 				});
+				$(".add").click(function(){
+					$(".form").show();
+				});
 			}
 		}
 		

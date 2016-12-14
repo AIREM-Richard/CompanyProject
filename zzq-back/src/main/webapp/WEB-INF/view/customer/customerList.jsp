@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${ctx}/static/css/base.css">
 </head>
 <body>
-	<button class="button">新增</button>
+	<button class="button add">新增</button>
 	<table class="table">
 		<thead>
 			<tr>
@@ -38,7 +38,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<form>
+	<form class="form">
 		<label for="">姓名：<input type="text" name="name"></label>
 		<label for="">性别：<input type="radio" name="sex"></label>
 		<label for="">手机号：<input type="text" name="mobile"></label>
