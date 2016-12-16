@@ -24,20 +24,21 @@
 					<div class="box_login">
 						<div class="box_hd"><h1>账号登录</h1></div>
 						<div class="box_form">
-							<form action="" id="login_form" method="post">
+							<form action="${ctx }/login" id="login_form" method="post">
 								<div class="item">
 									<label for="" class="lo_name"></label>
-									<input type="text" class="name">
+									<input type="text" class="name" name="username">
 								</div>
 								<div class="item">
 									<label for="" class="lo_pwd"></label>
-									<input type="text" class="name">
+									<input type="text" class="name" name="password">
 								</div>
 								<div class="item_cl">
 									<span><input type="checkbox" class="fjcheckbox"><label for="">自动登录</label></span>
 								</div>
 								<div class="item">
-									<a href="views/manage.html" class="sub_login">登录</a>
+									<a href="javascript:void(0);" class="sub_login">登录</a>
+									<input type="submit" value="login"/>
 								</div>
 							</form>
 						</div>

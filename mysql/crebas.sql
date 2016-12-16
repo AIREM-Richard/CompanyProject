@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/12/13 16:50:18                          */
+/* Created on:     2016/12/16 23:16:49                          */
 /*==============================================================*/
 
 
@@ -10,7 +10,17 @@ drop table if exists sys_dict_type;
 
 drop table if exists sys_office;
 
+drop table if exists sys_resource;
+
+drop table if exists sys_role;
+
+drop table if exists sys_role_resource;
+
 drop table if exists sys_user;
+
+drop table if exists sys_user_resource;
+
+drop table if exists sys_user_role;
 
 drop table if exists t_activity;
 
@@ -74,6 +84,45 @@ charset = UTF8;
 alter table sys_office comment '公司机构表';
 
 /*==============================================================*/
+/* Table: sys_resource                                          */
+/*==============================================================*/
+create table sys_resource
+(
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
+   url                  varchar(200) comment 'url',
+   permission_identity  varchar(100) comment '权限标识',
+   primary key (id)
+);
+
+alter table sys_resource comment '系统资源表';
+
+/*==============================================================*/
+/* Table: sys_role                                              */
+/*==============================================================*/
+create table sys_role
+(
+   id                   bigint(11) unsigned not null auto_increment comment '主键',
+   name                 varchar(50) comment '角色名称',
+   english_name         varchar(50) comment '英文名称',
+   primary key (id)
+);
+
+alter table sys_role comment '系统角色表';
+
+/*==============================================================*/
+/* Table: sys_role_resource                                     */
+/*==============================================================*/
+create table sys_role_resource
+(
+   id                   bigint(20) unsigned not null auto_increment comment '主键',
+   role_id              bigint(20) comment '角色id',
+   resource_id          bigint(20) comment '资源id',
+   primary key (id)
+);
+
+alter table sys_role_resource comment '系统角色资源表';
+
+/*==============================================================*/
 /* Table: sys_user                                              */
 /*==============================================================*/
 create table sys_user
@@ -82,11 +131,37 @@ create table sys_user
    staff_no             varchar(20) not null comment '员工工号',
    office_id            bigint(20) not null comment '部门id',
    name                 varchar(20) comment '员工名字',
+   username             varchar(20) comment '员工登录系统名',
+   password             char(32) comment '员工登录系统密码',
    primary key (id)
 )
 charset = UTF8;
 
 alter table sys_user comment '公司员工表';
+
+/*==============================================================*/
+/* Table: sys_user_resource                                     */
+/*==============================================================*/
+create table sys_user_resource
+(
+   user_id              bigint(20) not null comment '员工id',
+   resource_id          bigint(20) not null comment '资源id',
+   primary key (user_id, resource_id)
+);
+
+alter table sys_user_resource comment '系统用户资源表';
+
+/*==============================================================*/
+/* Table: sys_user_role                                         */
+/*==============================================================*/
+create table sys_user_role
+(
+   user_id              bigint(20) not null comment '员工id',
+   role_id              bigint(20) not null comment '角色主键',
+   primary key (user_id, role_id)
+);
+
+alter table sys_user_role comment '系统用户角色表';
 
 /*==============================================================*/
 /* Table: t_activity                                            */

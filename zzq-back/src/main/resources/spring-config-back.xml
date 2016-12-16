@@ -19,5 +19,6 @@
 	<!-- 导入spring相关配置文件 -->
 	<import resource="spring-base-core.xml"/>
 	<import resource="spring-datasource-core.xml"/>
+	<import resource="spring-shiro.xml"/>
 	
 </beans>
