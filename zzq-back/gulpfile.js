@@ -5,7 +5,8 @@ var gulp = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer'), //autoprefixer要和es6-promise一起才能使用
 	base64 = require('gulp-base64'),
 	cssnano = require('gulp-cssnano'),
-	gp_concat = require('gulp-concat');
+	gp_concat = require('gulp-concat'),
+	gp_uglify = require('gulp-uglify');
 require('es6-promise').polyfill();
 
 var paths = {
@@ -35,17 +36,25 @@ gulp.task('sass', function () {
 });
 
 /*js 合并管理*/
+gulp.task('login', function() {
+  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'login.js'])
+    .pipe(gp_concat('login.js'))
+    .pipe(gp_uglify())
+    .pipe(gulp.dest(paths.target_js));
+});
 gulp.task('main', function() {
-	  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'main.js'])
-	    .pipe(gp_concat('main.js'))
-	    .pipe(gulp.dest(paths.target_js));
-	});
+  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'main.js'])
+    .pipe(gp_concat('main.js'))
+    .pipe(gp_uglify())
+    .pipe(gulp.dest(paths.target_js));
+});
 gulp.task('customer', function() {
   return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'customer.js'])
     .pipe(gp_concat('customer.js'))
+    .pipe(gp_uglify())
     .pipe(gulp.dest(paths.target_js));
 });
 
-gulp.task('js', ['main','customer']);
+gulp.task('js', ['login','main','customer']);
 gulp.task('build', ['sass','js']);
 gulp.task('default', ['build']);

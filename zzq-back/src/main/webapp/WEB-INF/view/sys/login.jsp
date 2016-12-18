@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
 <title>登录</title>
 <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="${ctx}/static/css/login.css">
@@ -31,14 +34,13 @@
 								</div>
 								<div class="item">
 									<label for="" class="lo_pwd"></label>
-									<input type="text" class="name" name="password">
+									<input type="password" class="name" name="password">
 								</div>
 								<div class="item_cl">
 									<span><input type="checkbox" class="fjcheckbox"><label for="">自动登录</label></span>
 								</div>
 								<div class="item">
-									<a href="javascript:void(0);" class="sub_login">登录</a>
-									<input type="submit" value="login"/>
+									<a href="javascript:void(0);" class="sub_login" id="submit">登录</a>
 								</div>
 							</form>
 						</div>
@@ -57,5 +59,6 @@
 			</div>
 		</div>
 	</div>
+	<script src="${ctx }/static/js/login.js"></script>
 </body>
 </html>
