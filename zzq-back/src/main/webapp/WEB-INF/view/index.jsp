@@ -61,7 +61,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<iframe id="iFrame1" name="iFrame1" src="${ctx}/welcome" width="100%" height="100%" frameborder="0" onload="this.height=iFrame1.document.body.scrollHeight"></iframe>
+				<iframe id="iFrame1" name="iFrame1" src="${ctx}/welcome" width="100%" height="100%" frameborder="0"></iframe>
 			</div>
 			<div class="clear"></div>
 		</div>

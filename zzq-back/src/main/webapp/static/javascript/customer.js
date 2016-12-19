@@ -31,7 +31,8 @@ var customer = {
 					});
 				});
 				$(".add").click(function(){
-					$(".form").show();
+					$(".table-box").toggle("slow");
+					$(".form-box").toggle("slow");
 				});
 			}
 		}

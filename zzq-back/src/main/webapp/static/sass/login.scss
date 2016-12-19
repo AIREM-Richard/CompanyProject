@@ -12,10 +12,10 @@
 *
 */
 @import "mixins/normalize","mixins/reset";
-.hd_login{width: 100%; height: 75px; background: #3A6EA5;}
+.hd_login{width: 100%; height: 75px; background: #3A6EA5;min-width: 980px;}
 .hder_login{overflow: hidden; position: relative; width: 980px; height: 75px; margin: 0 auto;}
 .login_logo{float: left; margin: 10.5px 0px; display: inline;}
-.bg_login{width: 100%; height: 574px; background: url("../img/login/login_bg.jpg") no-repeat center top;}
+.bg_login{width: 100%; height: 574px; background: url("../img/login/login_bg.jpg") no-repeat center top;min-width: 980px;}
 .co_login{width: 980px; margin: 0 auto; height: 574px;}
 .form_login{position: relative; z-index: 4; width: 306px; background: #fff; padding: 20px; overflow: visible; float: right; top: 130px;}
 .box_hd{display: block; width: 306px; overflow: visible; height: 27px;
@@ -32,12 +32,14 @@
 		label.lo_pwd{background-position: -48px -48px;}
 	}
 }
-.item_cl .fjcheckbox{float: none; vertical-align: middle; _vertical-align: -1px; margin: 0 3px 0 0; padding: 0;}
+.item_cl{
+	margin-bottom: 15px;
+	.fjcheckbox{float: none; vertical-align: middle; _vertical-align: -1px; margin: 0 3px 0 0; padding: 0;}
+}
 .sub_login{text-align: center; border: 1px solid #e85356; display: block; width: 302px; background: #e4393c; height: 38px; line-height: 38px; color: #fff; font-size: 20px; font-family: '\5fae\8f6f\96c5\9ed1';
 	&:hover{color:#fff;}
 }
-.item_cl{margin-bottom: 15px;}
-.ft_login{width: 100%;text-align: center;clear: both;}
+.ft_login{width: 100%;text-align: center;clear: both;min-width: 980px;}
 .subft_login{width: 980px; margin: 0 auto; position: relative; padding: 18px 0;}
 .subft_hd{
 	a{color: #666; text-decoration: none; margin: 0 10px;}

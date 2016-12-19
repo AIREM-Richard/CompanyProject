@@ -13,41 +13,109 @@
 <link rel="stylesheet" href="${ctx}/static/css/base.css">
 </head>
 <body>
-	<button class="button add">新增</button>
-	<table class="table">
-		<thead>
+  <div class="table-box">
+	<div class="page_name">科别信息设定</div>
+    <div class="button_box"><a href="#" class="blue_button add">新增</a></div>
+    <div class="list_table_header">
+   	    <table width="100%">
+    	    <tbody>
+     	    <tr>
+      	    <td width="30"><img src="${ctx }/static/img/main/icon_search.png"></td>
+      	    <td width="80">科别代码：</td>
+      	    <td><input type="text" name="textfield" id="textfield" style="width:90%"></td>
+      	    <td width="80">上报简称：</td>
+      	    <td><input type="text" name="textfield2" id="textfield2" style="width:90%"></td>
+      	    <td width="80">科别名称：</td>
+      	    <td><input type="text" name="textfield3" id="textfield3" style="width:90%"></td>
+      	    <td width="80">包含科目：</td>
+      	    <td width="100"><div id="select-select" class="select" style="width: 62px;"><div><span>请选择</span></div><ul style="width: 60px; display: none;"><li class="hover">请选择</li><li>请选择</li><li>请选择</li></ul></div><select name="select" id="select" style="display: none;">
+      	      <option>请选择</option>
+                <option>请选择</option>
+                <option>请选择</option>
+    	        </select></td>
+      	    <td width="100"><a href="#" class="blue_button">查询</a></td>
+      	    <td><a href="#" class="unfold_arr"></a></td>
+	            </tr>
+  	 		</tbody>
+  	 	</table>
+    </div>
+    <div class="list_table">
+   	  <table width="100%">
+    		<thead>
+     		<tr>
+      	    <th>姓名</th>
+      	    <th>性别</th>
+      	    <th>手机号</th>
+      	    <th>详细地址</th>
+      	    <th>备注</th>
+      	    <th width="80">操作</th>
+	        </tr>
+        </thead>
+	    <tbody>
+	        <c:forEach items="${pageInfo.list }" var="customerInfo">
 			<tr>
-				<th>姓名</th>
-				<th>性别</th>
-				<th>手机号</th>
-				<th>详细地址</th>
-				<th>操作</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${pageInfo.list }" var="customerInfo">
-				<tr>
-					<td>${customerInfo.name }</td>
-					<td>
-						<c:choose>
-							<c:when test="${customerInfo.sex eq true }">男</c:when>
-							<c:otherwise>女</c:otherwise>
-						</c:choose>
-					</td>
-					<td>${customerInfo.mobile }</td>
-					<td>${customerInfo.detailAddress }</td>
-					<td>删除，修改</td>
-				</tr>	
+				<td>${customerInfo.name }</td>
+				<td>
+					<c:choose>
+						<c:when test="${customerInfo.sex eq true }">男</c:when>
+						<c:otherwise>女</c:otherwise>
+					</c:choose>
+				</td>
+				<td>${customerInfo.mobile }</td>
+				<td>${customerInfo.detailAddress }</td>
+				<td>这里是备注</td>
+				<td><a href="科别信息维护.html" class="edit" title="编辑"></a><a href="#" class="delete" title="删除"></a></td>
+			</tr>	
 			</c:forEach>
-		</tbody>
-	</table>
-	<form class="form">
-		<label for="">姓名：<input type="text" name="name"></label>
-		<label for="">性别：<input type="radio" name="sex"></label>
-		<label for="">手机号：<input type="text" name="mobile"></label>
-		<label for="">详细地址：<input type="text" name="detailAddress"></label>
-		<a class="button submit">提交</a>
-	</form>
+   	  	</tbody>
+  	  </table>
+    </div>
+    <div class="pages">
+    	<div class="left">共有4笔记录，当前1-4笔记录</div>
+        <div class="right"><a href="#" class="last"></a><a href="#" class="next"></a><a href="#" class="prev"></a><a href="#" class="first"></a></div>
+        <div class="clear"></div>
+    </div>
+  </div>
+	<div class="form-box">
+          <div class="page_name">科别信息维护</div>
+            <div class="button_box"><a href="#" class="back">返回</a></div>
+            <div class="form_table">
+              <table width="100%">
+                <tbody><tr class="odd">
+                  <td width="100">姓名：</td>
+                  <td><input name="name" type="text" id="textfield" style="width:400px;" value="892347587"></td>
+                </tr>
+                <tr>
+                  <td>性别：</td>
+                  <td><input name="sex" type="radio" id="textfield2" style="width:400px;"></td>
+                </tr>
+                <tr class="odd">
+                  <td>手机号：</td>
+                  <td><input name="mobile" type="text" id="textfield3" style="width:400px;" value="物理化学班"></td>
+                </tr>
+                <tr>
+                  <td>详细地址：</td>
+                  <td><input name="detailAddress" type="text" id="textfield4" style="width:400px;" value="理科"></td>
+                </tr>
+                <tr class="odd">
+                  <td>包含科目：</td>
+                  <td>
+                    <span id="checkbox-checkbox" class="checkbox-checked"></span><input name="checkbox" type="checkbox" id="checkbox" checked="checked" class="hidden">物理          
+                    <span id="checkbox-checkbox2" class="checkbox-checked"></span><input name="checkbox2" type="checkbox" id="checkbox2" checked="checked" class="hidden">化学          
+                    <span id="checkbox-checkbox3" class="checkbox"></span><input type="checkbox" name="checkbox3" id="checkbox3" class="hidden">生物          
+                    <span id="checkbox-checkbox4" class="checkbox"></span><input type="checkbox" name="checkbox4" id="checkbox4" class="hidden">政治          
+                    <span id="checkbox-checkbox5" class="checkbox"></span><input type="checkbox" name="checkbox5" id="checkbox5" class="hidden">历史          
+                    <span id="checkbox-checkbox6" class="checkbox"></span><input type="checkbox" name="checkbox6" id="checkbox6" class="hidden">地理
+                  </td>
+                </tr>
+                <tr>
+                  <td>备注：</td>
+                  <td><textarea name="textfield5" id="textfield5" style="width:99%; height:150px;"></textarea></td>
+                </tr>
+              </tbody></table>
+            </div>
+            <div class="button_box_bottom"><a href="#" class="blue_button submit">保存</a></div>
+	</div>
 	<script src="${ctx }/static/js/customer.js"></script>
 	<script type="text/javascript">
 		$(function(){
