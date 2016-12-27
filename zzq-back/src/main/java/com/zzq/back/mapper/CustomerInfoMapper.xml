@@ -7,9 +7,10 @@
     <result column="sex" property="sex" jdbcType="BIT" />
     <result column="mobile" property="mobile" jdbcType="CHAR" />
     <result column="detail_address" property="detailAddress" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, sex, mobile, detail_address
+    id, name, sex, mobile, detail_address, remark
   </sql>
   <select id="selectCustomerInfoByParam" resultMap="BaseResultMap">
   	select 
@@ -34,6 +35,9 @@
       <if test="detailAddress != null" >
         detail_address,
       </if>
+      <if test="remark != null" >
+        remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -51,6 +55,9 @@
       <if test="detailAddress != null" >
         #{detailAddress,jdbcType=VARCHAR},
       </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   
@@ -66,9 +73,9 @@
   </delete>
   <insert id="insert" parameterType="com.zzq.back.entity.CustomerInfo" >
     insert into t_customer_info (id, name, sex, mobile, 
-      detail_address)
+      detail_address, remark)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{mobile,jdbcType=CHAR}, 
-      #{detailAddress,jdbcType=VARCHAR})
+      #{detailAddress,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zzq.back.entity.CustomerInfo" >
     update t_customer_info
@@ -85,6 +92,9 @@
       <if test="detailAddress != null" >
         detail_address = #{detailAddress,jdbcType=VARCHAR},
       </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -93,7 +103,8 @@
     set name = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=BIT},
       mobile = #{mobile,jdbcType=CHAR},
-      detail_address = #{detailAddress,jdbcType=VARCHAR}
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="${ctx}/static/css/main.css">
 </head>
-<body>
+<body class="layout-boxed">
 	<div class="container">
 		<div class="header">
 			<div class="inner_logo"></div>
@@ -21,14 +21,14 @@
 					<a href="#"><span class="wel_msg">3</span></a>
 				</div>
 				<div class="welcome_user">
-					欢迎你登录<br /> <span>刘清华</span>
+					欢迎你登录<br /> <span>${sysUserName }</span>
 				</div>
 				<div class="clear"></div>
 			</div>
 			<div class="top_area">
-				<a href="#" class="rp_home" title="主页"></a> <a href="#"
-					class="rp_help" title="帮助"></a> <a href="#" class="rp_logout"
-					title="退出"></a>
+				<a href="#" class="rp_home" title="主页"></a> 
+				<a href="#" class="rp_help" title="帮助"></a> 
+				<a href="${ctx }/logout" class="rp_logout" title="退出"></a>
 			</div>
 			<div class="clear"></div>
 		</div>

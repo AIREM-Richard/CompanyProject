@@ -5,10 +5,15 @@ var customer = {
 				return base.getRootPath()+'/customerInfo/save';
 			}
 		},
+		//切换显示对象
+		toggle2Object:function(tableBox,formBox){
+			$(tableBox).stop(true,true).toggle("slow"),$(formBox).stop(true,true).toggle("slow");
+		},
 		//客户列表页逻辑
 		list:{
 			init : function(params){
 				$(".submit").click(function(event) {
+					var param = {'name':$("input[name='name']").val(),"sex":$("input[name='sex']").val(),"mobile":$("input[name='mobile']").val(),"detailAddress":$("input[name='detailAddress']").val(),"remark":$("textarea[name='remark']").val()};
 					$.ajax({
 						type:"post",
 						url: customer.url.save(),
@@ -16,7 +21,7 @@ var customer = {
 						async:false,
 						cache:false,
 						contentType: "application/x-www-form-urlencoded; charset=utf-8",
-						data:{'name':encodeURI($("input[name='name']").val()),"sex":$("input[name='sex']").val(),"mobile":encodeURI($("input[name='mobile']").val()),"detailAddress":encodeURI($("input[name='detailAddress']").val())}, //解决ie8传值乱码问题
+						data:param,
 						beforeSend : function(XMLHttpRequest) {
 							 XMLHttpRequest.setRequestHeader("X-Custom-Header1", "Bar");
 						},  
@@ -30,11 +35,9 @@ var customer = {
 						}
 					});
 				});
-				$(".add").click(function(){
-					$(".table-box").toggle("slow");
-					$(".form-box").toggle("slow");
+				$(".add,.back").click(function(){
+					customer.toggle2Object(".table-box",".form-box");
 				});
 			}
 		}
-		
 }

@@ -21,18 +21,12 @@
     	    <tbody>
      	    <tr>
       	    <td width="30"><img src="${ctx }/static/img/main/icon_search.png"></td>
-      	    <td width="80">科别代码：</td>
+      	    <td width="80">姓名：</td>
       	    <td><input type="text" name="textfield" id="textfield" style="width:90%"></td>
-      	    <td width="80">上报简称：</td>
+      	    <td width="80">性别：</td>
       	    <td><input type="text" name="textfield2" id="textfield2" style="width:90%"></td>
-      	    <td width="80">科别名称：</td>
+      	    <td width="80">手机号：</td>
       	    <td><input type="text" name="textfield3" id="textfield3" style="width:90%"></td>
-      	    <td width="80">包含科目：</td>
-      	    <td width="100"><div id="select-select" class="select" style="width: 62px;"><div><span>请选择</span></div><ul style="width: 60px; display: none;"><li class="hover">请选择</li><li>请选择</li><li>请选择</li></ul></div><select name="select" id="select" style="display: none;">
-      	      <option>请选择</option>
-                <option>请选择</option>
-                <option>请选择</option>
-    	        </select></td>
       	    <td width="100"><a href="#" class="blue_button">查询</a></td>
       	    <td><a href="#" class="unfold_arr"></a></td>
 	            </tr>
@@ -63,7 +57,7 @@
 				</td>
 				<td>${customerInfo.mobile }</td>
 				<td>${customerInfo.detailAddress }</td>
-				<td>这里是备注</td>
+				<td>${customerInfo.remark }</td>
 				<td><a href="科别信息维护.html" class="edit" title="编辑"></a><a href="#" class="delete" title="删除"></a></td>
 			</tr>	
 			</c:forEach>
@@ -71,7 +65,7 @@
   	  </table>
     </div>
     <div class="pages">
-    	<div class="left">共有4笔记录，当前1-4笔记录</div>
+    	<div class="left">共有${pageInfo.total }笔记录，当前${pageInfo.startRow}-${pageInfo.endRow}笔记录</div>
         <div class="right"><a href="#" class="last"></a><a href="#" class="next"></a><a href="#" class="prev"></a><a href="#" class="first"></a></div>
         <div class="clear"></div>
     </div>
@@ -83,7 +77,7 @@
               <table width="100%">
                 <tbody><tr class="odd">
                   <td width="100">姓名：</td>
-                  <td><input name="name" type="text" id="textfield" style="width:400px;" value="892347587"></td>
+                  <td><input name="name" type="text" id="textfield" style="width:400px;"></td>
                 </tr>
                 <tr>
                   <td>性别：</td>
@@ -91,11 +85,11 @@
                 </tr>
                 <tr class="odd">
                   <td>手机号：</td>
-                  <td><input name="mobile" type="text" id="textfield3" style="width:400px;" value="物理化学班"></td>
+                  <td><input name="mobile" type="text" id="textfield3" style="width:400px;"></td>
                 </tr>
                 <tr>
                   <td>详细地址：</td>
-                  <td><input name="detailAddress" type="text" id="textfield4" style="width:400px;" value="理科"></td>
+                  <td><input name="detailAddress" type="text" id="textfield4" style="width:400px;"></td>
                 </tr>
                 <tr class="odd">
                   <td>包含科目：</td>
@@ -110,7 +104,7 @@
                 </tr>
                 <tr>
                   <td>备注：</td>
-                  <td><textarea name="textfield5" id="textfield5" style="width:99%; height:150px;"></textarea></td>
+                  <td><textarea name="remark" id="textfield5" style="width:99%; height:150px;"></textarea></td>
                 </tr>
               </tbody></table>
             </div>

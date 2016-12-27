@@ -10,6 +10,8 @@ public class CustomerInfo {
     private String mobile;
 
     private String detailAddress;
+    
+    private String remark;
 
     public Long getId() {
         return id;
@@ -50,4 +52,12 @@ public class CustomerInfo {
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress == null ? null : detailAddress.trim();
     }
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 }

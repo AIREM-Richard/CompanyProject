@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/12/16 23:16:49                          */
+/* Created on:     2016/12/19 21:10:06                          */
 /*==============================================================*/
 
 
@@ -199,6 +199,7 @@ create table t_customer_info
    sex                  bit(1) comment '客户性别（0：男，1：女）',
    mobile               char(11) comment '客户手机号码',
    detail_address       varchar(100) comment '客户详细地址',
+   remark               varchar(200) comment '备注',
    primary key (id)
 )
 charset = UTF8;
