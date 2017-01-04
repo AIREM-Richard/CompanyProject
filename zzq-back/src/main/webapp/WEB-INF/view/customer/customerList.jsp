@@ -58,7 +58,7 @@
 				<td>${customerInfo.mobile }</td>
 				<td>${customerInfo.detailAddress }</td>
 				<td>${customerInfo.remark }</td>
-				<td><a href="科别信息维护.html" class="edit" title="编辑"></a><a href="#" class="delete" title="删除"></a></td>
+				<td><a href="科别信息维护.html" class="edit" title="编辑"></a><a href="javascript:void(0);" onclick="customer.deleteCustomer(${customerInfo.id},this);" class="delete" title="删除"></a></td>
 			</tr>	
 			</c:forEach>
    	  	</tbody>
@@ -81,7 +81,10 @@
                 </tr>
                 <tr>
                   <td>性别：</td>
-                  <td><input name="sex" type="radio" id="textfield2" style="width:400px;"></td>
+                  <td>
+                    <label for="sex-m">先生<input name="sex" type="radio" id="sex-m" checked="checked"></label>
+                    <label for="sex-w">女士<input name="sex" type="radio" id="sex-w"></label>
+                  </td>
                 </tr>
                 <tr class="odd">
                   <td>手机号：</td>
@@ -92,17 +95,6 @@
                   <td><input name="detailAddress" type="text" id="textfield4" style="width:400px;"></td>
                 </tr>
                 <tr class="odd">
-                  <td>包含科目：</td>
-                  <td>
-                    <span id="checkbox-checkbox" class="checkbox-checked"></span><input name="checkbox" type="checkbox" id="checkbox" checked="checked" class="hidden">物理          
-                    <span id="checkbox-checkbox2" class="checkbox-checked"></span><input name="checkbox2" type="checkbox" id="checkbox2" checked="checked" class="hidden">化学          
-                    <span id="checkbox-checkbox3" class="checkbox"></span><input type="checkbox" name="checkbox3" id="checkbox3" class="hidden">生物          
-                    <span id="checkbox-checkbox4" class="checkbox"></span><input type="checkbox" name="checkbox4" id="checkbox4" class="hidden">政治          
-                    <span id="checkbox-checkbox5" class="checkbox"></span><input type="checkbox" name="checkbox5" id="checkbox5" class="hidden">历史          
-                    <span id="checkbox-checkbox6" class="checkbox"></span><input type="checkbox" name="checkbox6" id="checkbox6" class="hidden">地理
-                  </td>
-                </tr>
-                <tr>
                   <td>备注：</td>
                   <td><textarea name="remark" id="textfield5" style="width:99%; height:150px;"></textarea></td>
                 </tr>
@@ -111,11 +103,5 @@
             <div class="button_box_bottom"><a href="#" class="blue_button submit">保存</a></div>
 	</div>
 	<script src="${ctx }/static/js/customer.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			//使用EL表达式传入参数
-			customer.list.init({});
-		});
-	</script>
 </body>
 </html>

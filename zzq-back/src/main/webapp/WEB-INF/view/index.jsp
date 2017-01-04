@@ -67,10 +67,5 @@
 		</div>
 	</div>
 	<script src="${ctx}/static/js/main.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			main.init({});
-		});
-	</script>
 </body>
 </html>

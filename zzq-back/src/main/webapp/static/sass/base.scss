@@ -1,6 +1,6 @@
 // Reset and dependencies
-@import "mixins/normalize","mixins/reset";
-@import "dist/button","dist/body","dist/table","dist/form";
+@import "mixins/normalize","mixins/reset","mixins/common";
+@import "dist/button","dist/body","dist/table","dist/form","dist/checkbox";
 @import "services/pages";
 .page_name{font-size:24px; color:#b0b0b0; padding-top:20px; padding-bottom:10px; }
 .button_box{padding:10px 0px; }
@@ -48,10 +48,7 @@ div.select li {padding: 0px 5px; cursor: default; height:28px; line-height:28px;
 	}
 }
 .form-box{display:none;}
-span.checkbox, span.checkbox-hover, span.checkbox-checked, span.checkbox-checked-hover {background: url(../img/main/bg_checkbox.png) 0 0 no-repeat; width: 18px; height:18px; position: absolute; z-index: 1; cursor: pointer; margin:0px; padding:0px; }
-span.checkbox-hover {background: url(../img/main/bg_checkbox.png) 0 0px no-repeat; }
-span.checkbox-checked {background: url(../img/main/bg_checkbox.png) 0 -18px no-repeat; }
-span.checkbox-checked-hover {background: url(../img/main/bg_checkbox.png) 0 -18px no-repeat; }
-.hidden {filter: alpha(opacity=0); -moz-opacity: 0; opacity: 0; z-index: 0; margin: 0; padding: 0; width: 16px; height:16px; }
+
+.hidden {@include opacity(0); z-index: 0; margin: 0; padding: 0; width: 16px; height:16px; }
 input[type="text"]{font-family:'Microsoft YaHei'; height:26px; line-height:26px; border:1px solid #d7d8dd; border-radius:4px; text-indent:5px; font-size:14px; color:#34495e; }
 textarea{border-radius:4px; border:1px solid #d7d8dd; padding:5px; font-size:14px; color:#34495e; }

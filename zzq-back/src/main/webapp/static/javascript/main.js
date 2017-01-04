@@ -6,3 +6,6 @@ var main = {
 		});
 	}
 }
+$(function(){
+	main.init({});
+});

@@ -1,7 +1,14 @@
 var login = {
+		submitForm:function(){
+			$("#login_form").submit();
+		},
 		init:function(params){
+			//用户名和密码回车提交登录
+			$("input[name='username'],input[name='password']").keyup(function(event) {
+				event.keyCode == 13 ? login.submitForm() : "";
+			});
 			$("#submit").click(function(){
-				$(this).parents("form").submit();
+				login.submitForm();
 			});
 			$('.item>input').each(function(index, el) {
 				$(this).bind({

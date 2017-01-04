@@ -29,4 +29,9 @@ public class CustomerInfoService {
 		customerInfoDao.insertSelective(customerInfo);
 		return true;
 	}
+
+	@Transactional
+	public int deleteCustomerByCustomerId(Long customerId) {
+		return customerInfoDao.deleteByPrimaryKey(customerId);
+	}
 }

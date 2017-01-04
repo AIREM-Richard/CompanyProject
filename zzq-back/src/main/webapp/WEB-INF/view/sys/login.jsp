@@ -37,7 +37,11 @@
 									<input type="password" class="name" name="password">
 								</div>
 								<div class="item_cl">
-									<span><input type="checkbox" class="fjcheckbox"><label for="">自动登录</label></span>
+									<span class="checkbox">
+									    <input type="checkbox" class="checkbox" id="autoLogin">
+									    <i class="checkbox"></i>
+									</span>
+									<label for="autoLogin">自动登录</label>
 								</div>
 								<div class="item">
 									<a href="javascript:void(0);" class="sub_login" id="submit">登录</a>

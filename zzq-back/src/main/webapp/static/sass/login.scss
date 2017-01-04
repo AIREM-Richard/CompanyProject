@@ -7,11 +7,13 @@
 * reset ................................. reset style storage file
 * 
 * COMPONENTS
+* checkbox ................................. checkbox style storage file
 *
 * BUSINESS
 *
 */
 @import "mixins/normalize","mixins/reset";
+@import "dist/checkbox";
 .hd_login{width: 100%; height: 75px; background: #3A6EA5;min-width: 980px;}
 .hder_login{overflow: hidden; position: relative; width: 980px; height: 75px; margin: 0 auto;}
 .login_logo{float: left; margin: 10.5px 0px; display: inline;}
@@ -34,7 +36,7 @@
 }
 .item_cl{
 	margin-bottom: 15px;
-	.fjcheckbox{float: none; vertical-align: middle; _vertical-align: -1px; margin: 0 3px 0 0; padding: 0;}
+	.checkbox{margin: 0 3px 0 0;top:1px;}
 }
 .sub_login{text-align: center; border: 1px solid #e85356; display: block; width: 302px; background: #e4393c; height: 38px; line-height: 38px; color: #fff; font-size: 20px; font-family: '\5fae\8f6f\96c5\9ed1';
 	&:hover{color:#fff;}
