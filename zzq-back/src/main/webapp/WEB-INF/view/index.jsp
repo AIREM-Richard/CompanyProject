@@ -47,11 +47,10 @@
 						</div>
 						<ul class="sub_menu">
 							<span class="top_arr"></span>
-							<li class="first"><a href="${ctx}/customerInfo/list">业主管理</a></li>
+							<li class="first"><a href="${ctx}/customerInfo/list">业主信息管理</a></li>
 							<li><a href="#">学段年级信息设定</a></li>
 							<li><a href="#">学校信息设定</a></li>
-							<li><a href="#" class="current">科别信息设定</a><span
-								class="right_arr"></span></li>
+							<li><a href="#">科别信息设定</a></li>
 							<li><a href="#">不参加统计规则设定</a></li>
 							<li><a href="#">上报DBF参数设定</a></li>
 						</ul></li>

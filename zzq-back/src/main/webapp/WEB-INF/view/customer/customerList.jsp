@@ -14,22 +14,28 @@
 </head>
 <body>
   <div class="table-box">
-	<div class="page_name">科别信息设定</div>
+	<div class="page_name">业主信息设定</div>
     <div class="button_box"><a href="#" class="blue_button add">新增</a></div>
     <div class="list_table_header">
    	    <table width="100%">
     	    <tbody>
-     	    <tr>
-      	    <td width="30"><img src="${ctx }/static/img/main/icon_search.png"></td>
-      	    <td width="80">姓名：</td>
-      	    <td><input type="text" name="textfield" id="textfield" style="width:90%"></td>
-      	    <td width="80">性别：</td>
-      	    <td><input type="text" name="textfield2" id="textfield2" style="width:90%"></td>
-      	    <td width="80">手机号：</td>
-      	    <td><input type="text" name="textfield3" id="textfield3" style="width:90%"></td>
-      	    <td width="100"><a href="#" class="blue_button">查询</a></td>
-      	    <td><a href="#" class="unfold_arr"></a></td>
-	            </tr>
+	     	    <tr>
+		      	    <td width="30"><img src="${ctx }/static/img/main/icon_search.png"></td>
+		      	    <td width="80">姓名：</td>
+		      	    <td><input type="text" name="queryName" style="width:90%"></td>
+		      	    <td width="80">性别：</td>
+		      	    <td>
+		      	    	<select style="width:90%" name="querySex">
+		      	    		<option value="">请选择</option>
+		      	    		<option value="0">男</option>
+		      	    		<option value="1">女</option>
+		      	    	</select>
+		      	    </td>
+		      	    <td width="80">手机号：</td>
+		      	    <td><input type="text" name="queryMobile" style="width:90%"></td>
+		      	    <td width="100"><a href="javascript:customer.queryCustomer();" class="blue_button">查询</a></td>
+		      	    <td><a href="#" class="unfold_arr"></a></td>
+		        </tr>
   	 		</tbody>
   	 	</table>
     </div>
@@ -45,9 +51,9 @@
       	    <th width="80">操作</th>
 	        </tr>
         </thead>
-	    <tbody>
+	    <tbody id="customerInfoTable">
 	        <c:forEach items="${pageInfo.list }" var="customerInfo">
-			<tr>
+			<tr customerInfoId="${customerInfo.id }">
 				<td>${customerInfo.name }</td>
 				<td>
 					<c:choose>
@@ -58,22 +64,18 @@
 				<td>${customerInfo.mobile }</td>
 				<td>${customerInfo.detailAddress }</td>
 				<td>${customerInfo.remark }</td>
-				<td><a href="科别信息维护.html" class="edit" title="编辑"></a><a href="javascript:void(0);" onclick="customer.deleteCustomer(${customerInfo.id},this);" class="delete" title="删除"></a></td>
+				<td><a href="javascript:void(0);" onclick="customer.editCustomer(${customerInfo.id});" class="edit" title="编辑"></a><a href="javascript:void(0);" onclick="customer.deleteCustomer(${customerInfo.id},this);" class="delete" title="删除"></a></td>
 			</tr>	
 			</c:forEach>
    	  	</tbody>
   	  </table>
     </div>
-    <div class="pages">
-    	<div class="left">共有${pageInfo.total }笔记录，当前${pageInfo.startRow}-${pageInfo.endRow}笔记录</div>
-        <div class="right"><a href="#" class="last"></a><a href="#" class="next"></a><a href="#" class="prev"></a><a href="#" class="first"></a></div>
-        <div class="clear"></div>
-    </div>
+   	<%@ include file="../common/page.jsp" %>
   </div>
 	<div class="form-box">
-          <div class="page_name">科别信息维护</div>
+          <div class="page_name">业主信息维护</div>
             <div class="button_box"><a href="#" class="back">返回</a></div>
-            <div class="form_table">
+            <div class="form_table" customerInfoId="">
               <table width="100%">
                 <tbody><tr class="odd">
                   <td width="100">姓名：</td>
@@ -100,7 +102,7 @@
                 </tr>
               </tbody></table>
             </div>
-            <div class="button_box_bottom"><a href="#" class="blue_button submit">保存</a></div>
+            <div class="button_box_bottom"><a href="javascript:void(0);" class="blue_button submit">保存</a></div>
 	</div>
 	<script src="${ctx }/static/js/customer.js"></script>
 </body>

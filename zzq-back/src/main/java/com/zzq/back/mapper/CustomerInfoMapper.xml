@@ -17,7 +17,7 @@
     <include refid="Base_Column_List" />
     from t_customer_info 
   </select>
-  <insert id="insertSelective" parameterType="com.zzq.back.entity.CustomerInfo" >
+  <insert id="insertSelective" parameterType="com.zzq.back.entity.CustomerInfo" useGeneratedKeys="true" keyProperty="id">
     insert into t_customer_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -1,8 +1,14 @@
 var customer = {
 		//封装客户相关的ajax的url
 		url : {
+			query:function(){
+				return base.getRootPath()+'/customerInfo/list';
+			},
 			save : function(){
 				return base.getRootPath()+'/customerInfo/save';
+			},
+			edit : function(){
+				return base.getRootPath() + '/customerInfo/edit';
 			},
 			deleteUrl : function(){
 				return base.getRootPath() + "/customerInfo/delete";
@@ -12,9 +18,45 @@ var customer = {
 		toggle2Object:function(tableBox,formBox){
 			$(tableBox).stop(true,true).toggle("slow"),$(formBox).stop(true,true).toggle("slow");
 		},
+		//清空form中的全部内容
+		clearFormContent : function(){
+			$(".form_table").attr('customerInfoId',"");
+			$("input[name='name']").val("");
+			$("#sex-m").prop('checked',true);
+			$("input[name='mobile']").val("");
+			$("input[name='detailAddress']").val("");
+			$("textarea[name='remark']").val("");
+		},
+		//查询业主信息
+		queryCustomer : function(){
+			var param = {'name':$("input[name='queryName']").val(),"sex":$("select[name='querySex']").val(),"mobile":$("input[name='queryMobile']").val()};
+			/*$.ajax({
+				type:"get",
+				url: customer.url.query(),
+				dataType:"json",
+				async:false,
+				cache:false,
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				data:param,
+				beforeSend : function(XMLHttpRequest) {
+					 XMLHttpRequest.setRequestHeader("X-Custom-Header1", "Bar");
+				},  
+				success:function(data){
+					
+				},
+				error:function(){
+					alert("系统或网络异常");
+				}
+			});*/
+			var name = $("input[name='queryName']").val() ? $("input[name='queryName']").val() : null;
+			var sex = $("select[name='querySex']").val() ? $("select[name='querySex']").val() : null;
+			window.location.href = customer.url.query() + "?name="+$("input[name='queryName']").val()+"&sex="+$("select[name='querySex']").val()+"&mobile="+$("input[name='queryMobile']").val()+"&pageNum=1";
+		},
 		//保存业主信息
 		saveCustomer: function(){
-			var param = {'name':$("input[name='name']").val(),"sex":$("input[name='sex']").val(),"mobile":$("input[name='mobile']").val(),"detailAddress":$("input[name='detailAddress']").val(),"remark":$("textarea[name='remark']").val()};
+			var sexVal = $("#sex-m").prop('checked') ? 0 : 1 ;
+			var sexShow = $("#sex-m").prop('checked') ? "男" : "女" ;
+			var param = {'id':$(".form_table").attr('customerInfoId'),'name':$("input[name='name']").val(),"sex":sexVal,"mobile":$("input[name='mobile']").val(),"detailAddress":$("input[name='detailAddress']").val(),"remark":$("textarea[name='remark']").val()};
 			$.ajax({
 				type:"post",
 				url: customer.url.save(),
@@ -28,12 +70,53 @@ var customer = {
 				},  
 				success:function(data){
 					if(data.flag){
+						$(".form_table").attr('customerInfoId') ? $("#customerInfoTable tr[customerInfoId="+$(".form_table").attr('customerInfoId')+"]").remove() : "";
+						var html = '<tr customerinfoid="'+ data.customerInfoId +'"><td>'+$("input[name='name']").val()+
+								   '</td><td>'+sexShow+
+								   '</td><td>'+$("input[name='mobile']").val()+
+								   '</td><td>'+$("input[name='detailAddress']").val()+
+								   '</td><td>'+$("textarea[name='remark']").val()+
+								   '</td><td><a href="javascript:void(0);" onclick="customer.editCustomer('+ data.customerInfoId +');" class="edit" title="编辑"></a><a href="javascript:void(0);" onclick="customer.deleteCustomer('+ data.customerInfoId +',this);" class="delete" title="删除"></a></td></tr>';
+						$("#customerInfoTable").append(html);
 						customer.toggle2Object(".table-box",".form-box");
+						customer.clearFormContent();
 					}else{
-						console.log(data.msg);
+						alert(data.msg);
 					}
 				},
 				error:function(){
+					alert("系统或网络异常");
+				}
+			});
+		},
+		//编辑业主信息
+		editCustomer:function(customerId){
+			$.ajax({
+				type:"post",
+				url: customer.url.edit(),
+				dataType:"json",
+				async:false,
+				cache:false,
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				data:{"customerId":customerId},
+				beforeSend : function(XMLHttpRequest) {
+					 XMLHttpRequest.setRequestHeader("X-Custom-Header1", "Bar");
+				},  
+				success:function(data){
+					if(data.flag){
+						$(".form_table").attr('customerInfoId',data.customerInfo.id);
+						$("input[name='name']").val(data.customerInfo.name);
+						data.customerInfo.sex ? $("#sex-m").prop('checked',true) : $("#sex-w").prop('checked',true);
+						$("input[name='mobile']").val(data.customerInfo.mobile);
+						$("input[name='detailAddress']").val(data.customerInfo.detailAddress);
+						$("textarea[name='remark']").val(data.customerInfo.remark);
+						customer.toggle2Object(".table-box",".form-box");
+					}else{
+						alert(data.msg);
+					}
+				},
+				error:function(){
+					alert("系统或网络异常");
 				}
 			});
 		},
@@ -49,8 +132,11 @@ var customer = {
 					if(data.flag){
 						$(obj).parents("tr").remove();
 					}else{
-						console.log(data.msg);
+						alert(data.msg);
 					}
+				},
+				error:function(){
+					alert("系统或网络异常");
 				}
 			});
 		},

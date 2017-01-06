@@ -49,7 +49,7 @@ gulp.task('main', function() {
     .pipe(gulp.dest(paths.target_js));
 });
 gulp.task('customer', function() {
-  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'customer.js'])
+  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js + "services/pages.js",paths.src_js+'customer.js'])
     .pipe(gp_concat('customer.js'))
     .pipe(gp_uglify())
     .pipe(gulp.dest(paths.target_js));

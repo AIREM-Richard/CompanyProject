@@ -30,10 +30,15 @@ public class CustomerInfoController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public Map<String, Object> save(CustomerInfo customerInfo) {
-		return (customerInfoService.saveCustomerInfo(customerInfo)) ? ResultUtils.buildFlagAndMsgMap(true, "保存成功")
-				: ResultUtils.buildFlagAndMsgMap(false, "保存失败");
+		return customerInfoService.saveCustomerInfo(customerInfo);
 	}
 
+	@RequestMapping(value = "edit")
+	@ResponseBody
+	public Map<String,Object> edit(Long customerId){
+		return customerInfoService.editCustomerByCustomerId(customerId);
+	}
+	
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public Map<String, Object> delete(Long customerId) {
