@@ -5,7 +5,7 @@ import java.util.List;
 import com.zzq.back.entity.CustomerInfo;
 
 public interface CustomerInfoDao {
-	List<CustomerInfo> selectCustomerInfoByParam();
+	List<CustomerInfo> selectCustomerInfoByParam(CustomerInfo record);
 	
 	int insertSelective(CustomerInfo record);
 	

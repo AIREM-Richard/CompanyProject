@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="taglibs.jsp" %>
 
-<div class="pages">
+<div class="pages" pagenum="${pageInfo.pageNum}">
 	<div class="left">共有${pageInfo.total }笔记录，当前${pageInfo.startRow}-${pageInfo.endRow}笔记录</div>
     <div class="right">
     	<c:choose>

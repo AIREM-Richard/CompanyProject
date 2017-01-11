@@ -22,7 +22,7 @@ public class CustomerInfoService {
 	public PageInfo<CustomerInfo> queryListByPage(Integer pageNum, CustomerInfo customerInfo) {
 		pageNum = pageNum != null ? pageNum : 1;
 		PageHelper.startPage(pageNum, 20, true);
-		List<CustomerInfo> customerInfoList = customerInfoDao.selectCustomerInfoByParam();
+		List<CustomerInfo> customerInfoList = customerInfoDao.selectCustomerInfoByParam(customerInfo);
 		return new PageInfo<CustomerInfo>(customerInfoList);
 	}
 

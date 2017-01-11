@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
@@ -20,13 +21,14 @@ public class CustomerInfoController {
 	@Autowired
 	CustomerInfoService customerInfoService;
 
-	@RequestMapping(value = "list")
+	@RequestMapping(value = "list",method = RequestMethod.GET)
 	public String list(CustomerInfo customerInfo, ModelMap model, Integer pageNum) {
 		PageInfo<CustomerInfo> pageInfo = customerInfoService.queryListByPage(pageNum, customerInfo);
+		model.put("customerInfo", customerInfo);
 		model.put("pageInfo", pageInfo);
 		return "customer/customerList";
 	}
-
+	
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public Map<String, Object> save(CustomerInfo customerInfo) {

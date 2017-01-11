@@ -29,34 +29,21 @@ var customer = {
 		},
 		//查询业主信息
 		queryCustomer : function(){
-			var param = {'name':$("input[name='queryName']").val(),"sex":$("select[name='querySex']").val(),"mobile":$("input[name='queryMobile']").val()};
-			/*$.ajax({
-				type:"get",
-				url: customer.url.query(),
-				dataType:"json",
-				async:false,
-				cache:false,
-				contentType: "application/x-www-form-urlencoded; charset=utf-8",
-				data:param,
-				beforeSend : function(XMLHttpRequest) {
-					 XMLHttpRequest.setRequestHeader("X-Custom-Header1", "Bar");
-				},  
-				success:function(data){
-					
-				},
-				error:function(){
-					alert("系统或网络异常");
-				}
-			});*/
-			var name = $("input[name='queryName']").val() ? $("input[name='queryName']").val() : null;
-			var sex = $("select[name='querySex']").val() ? $("select[name='querySex']").val() : null;
-			window.location.href = customer.url.query() + "?name="+$("input[name='queryName']").val()+"&sex="+$("select[name='querySex']").val()+"&mobile="+$("input[name='queryMobile']").val()+"&pageNum=1";
+			var name = $("input[name='queryName']").val() ? $("input[name='queryName']").val() : "";
+			var sex = $("select[name='querySex']").val() ? $("select[name='querySex']").val() : "";
+			var mobile = $("input[name='queryMobile']").val() ? $("input[name='queryMobile']").val() : "";
+			var pageNum = $(".pages").attr("pagenum") ? $(".pages").attr("pagenum") : "";
+			window.location.href = customer.url.query() + "?name="+name+"&sex="+sex+"&mobile="+mobile+"&pageNum="+pageNum;
 		},
 		//保存业主信息
 		saveCustomer: function(){
 			var sexVal = $("#sex-m").prop('checked') ? 0 : 1 ;
 			var sexShow = $("#sex-m").prop('checked') ? "男" : "女" ;
 			var param = {'id':$(".form_table").attr('customerInfoId'),'name':$("input[name='name']").val(),"sex":sexVal,"mobile":$("input[name='mobile']").val(),"detailAddress":$("input[name='detailAddress']").val(),"remark":$("textarea[name='remark']").val()};
+			if(!base.checkMobilePhone($("input[name='mobile']").val())){
+				alert("手机号格式不对");
+				return false;
+			}
 			$.ajax({
 				type:"post",
 				url: customer.url.save(),

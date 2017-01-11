@@ -22,17 +22,17 @@
 	     	    <tr>
 		      	    <td width="30"><img src="${ctx }/static/img/main/icon_search.png"></td>
 		      	    <td width="80">姓名：</td>
-		      	    <td><input type="text" name="queryName" style="width:90%"></td>
+		      	    <td><input type="text" name="queryName" style="width:90%" value="${customerInfo.name }"></td>
 		      	    <td width="80">性别：</td>
 		      	    <td>
 		      	    	<select style="width:90%" name="querySex">
 		      	    		<option value="">请选择</option>
-		      	    		<option value="0">男</option>
-		      	    		<option value="1">女</option>
+		      	    		<option value="0" <c:if test="${customerInfo.sex eq false }">selected</c:if>>男</option>
+		      	    		<option value="1" <c:if test="${customerInfo.sex eq true }">selected</c:if>>女</option>
 		      	    	</select>
 		      	    </td>
 		      	    <td width="80">手机号：</td>
-		      	    <td><input type="text" name="queryMobile" style="width:90%"></td>
+		      	    <td><input type="text" name="queryMobile" style="width:90%" value="${customerInfo.mobile }"></td>
 		      	    <td width="100"><a href="javascript:customer.queryCustomer();" class="blue_button">查询</a></td>
 		      	    <td><a href="#" class="unfold_arr"></a></td>
 		        </tr>
@@ -57,7 +57,7 @@
 				<td>${customerInfo.name }</td>
 				<td>
 					<c:choose>
-						<c:when test="${customerInfo.sex eq true }">男</c:when>
+						<c:when test="${customerInfo.sex eq false }">男</c:when>
 						<c:otherwise>女</c:otherwise>
 					</c:choose>
 				</td>
@@ -104,6 +104,11 @@
             </div>
             <div class="button_box_bottom"><a href="javascript:void(0);" class="blue_button submit">保存</a></div>
 	</div>
-	<script src="${ctx }/static/js/customer.js"></script>
+	<!-- mergeTo:${ctx}/static/js/customer.js -->
+	<script src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
+	<script src="${ctx}/static/javascript/common.js"></script>
+	<script src="${ctx}/static/javascript/services/pages.js"></script>
+	<script src="${ctx}/static/javascript/customer.js"></script>
+	<!-- mergeTo -->
 </body>
 </html>

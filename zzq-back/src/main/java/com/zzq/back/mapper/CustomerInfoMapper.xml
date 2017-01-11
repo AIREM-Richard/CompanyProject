@@ -12,10 +12,22 @@
   <sql id="Base_Column_List" >
     id, name, sex, mobile, detail_address, remark
   </sql>
-  <select id="selectCustomerInfoByParam" resultMap="BaseResultMap">
+  <select id="selectCustomerInfoByParam" resultMap="BaseResultMap" parameterType="com.zzq.back.entity.CustomerInfo">
   	select 
     <include refid="Base_Column_List" />
     from t_customer_info 
+    <where>
+    	1=1
+    	<if test="name != null and name !=''">
+    		and name = #{name,jdbcType=VARCHAR}
+    	</if>
+    	<if test="sex != null">
+    		and sex = #{sex,jdbcType=BIT}
+    	</if>
+    	<if test="mobile != null and mobile !=''">
+    		and mobile = #{mobile,jdbcType=VARCHAR}
+    	</if>
+    </where>
   </select>
   <insert id="insertSelective" parameterType="com.zzq.back.entity.CustomerInfo" useGeneratedKeys="true" keyProperty="id">
     insert into t_customer_info

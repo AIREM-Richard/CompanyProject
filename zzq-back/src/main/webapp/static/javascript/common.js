@@ -43,5 +43,9 @@ var base = {
 		        }
 		    }
 		    return r;
+		},
+		//检查手机号
+		checkMobilePhone : function(str){
+			return (str.match("^1([0-9][0-9])\\d{8}$") == null) ? false : true;
 		}
 }

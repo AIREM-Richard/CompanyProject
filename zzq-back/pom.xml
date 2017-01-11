@@ -26,6 +26,8 @@
  	<project.build.frontend.version>1.2</project.build.frontend.version>
     <project.build.node.version>v0.10.29</project.build.node.version>
     <project.build.npm.version>1.4.12</project.build.npm.version>
+    <!-- 配置项目编码为UTF-8 -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
   </properties>
   
   <dependencies>
@@ -197,6 +199,59 @@
   <build>
     <finalName>zzq-back</finalName>
     <plugins>
+       <plugin>
+			<groupId>com.google.code.maven-replacer-plugin</groupId>
+			<artifactId>replacer</artifactId>
+			<version>1.5.2</version>
+			<executions>
+				<execution>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>replace</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<!-- 读取js,css文件采用UTF-8编码 -->
+				<encoding>${project.build.sourceEncoding}</encoding>
+				<!-- 需要替换的jsp文件的目录 -->
+				<basedir>${basedir}/src/main/webapp/WEB-INF/view</basedir>  
+			    <includes>  
+			        <include>**/*.jsp</include>  
+			    </includes>  
+			    <!-- 新生成的jsp文件存放的路径 -->
+			    <outputBasedir>${project.build.directory}/${project.build.finalName}/WEB-INF/view</outputBasedir>  
+			    <outputDir>.</outputDir>  
+				<replacements>
+					<replacement>
+						<token>
+	                  <![CDATA[
+	                  <!-- mergeTo:([^\s]*) -->(.*?)<!-- mergeTo -->
+	                  ]]>
+						</token>
+						<value>
+	                  <![CDATA[
+	                  <script src="$1"></script>
+	                  ]]>
+						</value>
+					</replacement>
+				</replacements>
+				<regexFlags>
+					<regexFlag>CASE_INSENSITIVE</regexFlag>
+					<regexFlag>DOTALL</regexFlag>
+				</regexFlags>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>2.4</version>
+			<configuration>
+				<!-- 打包前已经通过工具生成了，打包时不能再打包 -->
+				<warSourceExcludes>WEB-INF/view/</warSourceExcludes>
+			</configuration>
+		</plugin>
+       
        <plugin>
            <groupId>com.github.eirslett</groupId>
            <artifactId>frontend-maven-plugin</artifactId>

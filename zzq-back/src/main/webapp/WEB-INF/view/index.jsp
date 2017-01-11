@@ -65,6 +65,10 @@
 			<div class="clear"></div>
 		</div>
 	</div>
-	<script src="${ctx}/static/js/main.js"></script>
+	<!-- mergeTo:${ctx}/static/js/main.js -->
+	<script src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
+	<script src="${ctx}/static/javascript/common.js"></script>
+	<script src="${ctx}/static/javascript/main.js"></script>
+	<!-- mergeTo -->
 </body>
 </html>
