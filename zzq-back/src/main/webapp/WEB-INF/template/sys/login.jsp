@@ -64,9 +64,14 @@
 		</div>
 	</div>
 	<!-- mergeTo:${ctx}/static/js/login.js -->
-	<script src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
-	<script src="${ctx}/static/javascript/common.js"></script>
-	<script src="${ctx}/static/javascript/login.js"></script>
+		<script src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script src="${ctx}/static/javascript/common.js"></script>
+		<script src="${ctx}/static/javascript/login.js"></script>
+		<!-- build:js ../../static/js/login.js -->
+	    <script src="../../../static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script src="../../../static/javascript/common.js"></script>
+		<script src="../../../static/javascript/login.js"></script> 
+	    <!-- endbuild -->
 	<!-- mergeTo -->
 </body>
 </html>

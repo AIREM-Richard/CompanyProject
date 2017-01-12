@@ -51,9 +51,7 @@
 	
 	
 	<!-- 对模型视图名称的解析,即在模型视图名称添加前后缀 -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
+	<import resource="spring-servlet-view.xml"/>
 	
 	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
 	<mvc:default-servlet-handler />

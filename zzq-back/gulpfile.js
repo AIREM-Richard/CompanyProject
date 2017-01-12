@@ -5,18 +5,27 @@ var gulp = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer'), //autoprefixer要和es6-promise一起才能使用
 	base64 = require('gulp-base64'),
 	cssnano = require('gulp-cssnano'),
-	gp_concat = require('gulp-concat'),
-	gp_uglify = require('gulp-uglify');
+	useref = require('gulp-useref');
 require('es6-promise').polyfill();
 
 var paths = {
   webapp : 'src/main/webapp/',
+  src_html : 'src/main/webapp/WEB-INF/template/**/*.jsp',
   src_sass : 'src/main/webapp/static/sass/**/*.scss',
   src_js : 'src/main/webapp/static/javascript/',
   plugin : 'src/main/webapp/static/plugin/',
+  target_html : 'src/main/webapp/WEB-INF/view/',
   target_css : 'src/main/webapp/static/css/',
   target_js : 'src/main/webapp/static/js/'
 };
+
+/*js 合并管理*/
+gulp.task('html', function () {
+    return gulp.src(paths.src_html)
+        .pipe(useref())
+        .pipe(gulp.dest(paths.target_html));
+});
+
 gulp.task('sass', function () {
   return gulp.src(paths.src_sass)//编译的文件
   	.pipe(sourcemaps.init())//开始注入前缀
@@ -35,26 +44,7 @@ gulp.task('sass', function () {
     .pipe(gulp.dest(paths.target_css));//输出到css文件夹
 });
 
-/*js 合并管理*/
-gulp.task('login', function() {
-  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'login.js'])
-    .pipe(gp_concat('login.js'))
-    .pipe(gp_uglify())
-    .pipe(gulp.dest(paths.target_js));
-});
-gulp.task('main', function() {
-  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js+'main.js'])
-    .pipe(gp_concat('main.js'))
-    .pipe(gp_uglify())
-    .pipe(gulp.dest(paths.target_js));
-});
-gulp.task('customer', function() {
-  return gulp.src([paths.plugin+'jquery/1.11.3/jquery.min.js', paths.src_js+'common.js', paths.src_js + "services/pages.js",paths.src_js+'customer.js'])
-    .pipe(gp_concat('customer.js'))
-    .pipe(gp_uglify())
-    .pipe(gulp.dest(paths.target_js));
-});
 
-gulp.task('js', ['login','main','customer']);
-gulp.task('build', ['sass','js']);
-gulp.task('default', ['build']);
+gulp.task('test', ['sass']);
+gulp.task('production', ['html']);
+gulp.task('default', ['test']);

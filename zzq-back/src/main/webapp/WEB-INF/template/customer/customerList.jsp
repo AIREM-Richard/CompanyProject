@@ -105,10 +105,16 @@
             <div class="button_box_bottom"><a href="javascript:void(0);" class="blue_button submit">保存</a></div>
 	</div>
 	<!-- mergeTo:${ctx}/static/js/customer.js -->
-	<script src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
-	<script src="${ctx}/static/javascript/common.js"></script>
-	<script src="${ctx}/static/javascript/services/pages.js"></script>
-	<script src="${ctx}/static/javascript/customer.js"></script>
+		<script src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script src="${ctx}/static/javascript/common.js"></script>
+		<script src="${ctx}/static/javascript/services/pages.js"></script>
+		<script src="${ctx}/static/javascript/customer.js"></script>
+		<!-- build:js ../../static/js/customer.js -->
+	    <script src="../../../static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script src="../../../static/javascript/common.js"></script>
+		<script src="../../../static/javascript/services/pages.js"></script>
+		<script src="../../../static/javascript/customer.js"></script>
+	    <!-- endbuild -->
 	<!-- mergeTo -->
 </body>
 </html>

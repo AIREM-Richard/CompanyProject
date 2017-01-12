@@ -65,10 +65,16 @@
 			<div class="clear"></div>
 		</div>
 	</div>
+	
 	<!-- mergeTo:${ctx}/static/js/main.js -->
-	<script src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
-	<script src="${ctx}/static/javascript/common.js"></script>
-	<script src="${ctx}/static/javascript/main.js"></script>
+		<script src="${ctx }/static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script src="${ctx }/static/javascript/common.js"></script>
+		<script src="${ctx }/static/javascript/main.js"></script>
+		<!-- build:js ../../static/js/main.js -->
+	    <script src="../../static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script src="../../static/javascript/common.js"></script>
+		<script src="../../static/javascript/main.js"></script>
+	    <!-- endbuild -->
 	<!-- mergeTo -->
 </body>
 </html>
