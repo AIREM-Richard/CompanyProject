@@ -110,10 +110,10 @@
 		<script src="${ctx}/static/javascript/services/pages.js"></script>
 		<script src="${ctx}/static/javascript/customer.js"></script>
 		<!-- build:js ../../static/js/customer.js -->
-	    <script src="../../../static/plugin/jquery/1.11.3/jquery.min.js"></script>
-		<script src="../../../static/javascript/common.js"></script>
-		<script src="../../../static/javascript/services/pages.js"></script>
-		<script src="../../../static/javascript/customer.js"></script>
+	    <script replace="gulp" replace-src="../../../static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script replace="gulp" replace-src="../../../static/javascript/common.js"></script>
+		<script replace="gulp" replace-src="../../../static/javascript/services/pages.js"></script>
+		<script replace="gulp" replace-src="../../../static/javascript/customer.js"></script>
 	    <!-- endbuild -->
 	<!-- mergeTo -->
 </body>

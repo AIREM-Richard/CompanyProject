@@ -5,6 +5,7 @@ var gulp = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer'), //autoprefixer要和es6-promise一起才能使用
 	base64 = require('gulp-base64'),
 	cssnano = require('gulp-cssnano'),
+	replace = require('gulp-replace'),
 	useref = require('gulp-useref');
 require('es6-promise').polyfill();
 
@@ -22,6 +23,7 @@ var paths = {
 /*js 合并管理*/
 gulp.task('html', function () {
     return gulp.src(paths.src_html)
+    	.pipe(replace('replace="gulp" replace-src="','src="'))
         .pipe(useref())
         .pipe(gulp.dest(paths.target_html));
 });

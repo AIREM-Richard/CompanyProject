@@ -71,9 +71,9 @@
 		<script src="${ctx }/static/javascript/common.js"></script>
 		<script src="${ctx }/static/javascript/main.js"></script>
 		<!-- build:js ../../static/js/main.js -->
-	    <script src="../../static/plugin/jquery/1.11.3/jquery.min.js"></script>
-		<script src="../../static/javascript/common.js"></script>
-		<script src="../../static/javascript/main.js"></script>
+	    <script replace="gulp" replace-src="../../static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script replace="gulp" replace-src="../../static/javascript/common.js"></script>
+		<script replace="gulp" replace-src="../../static/javascript/main.js"></script>
 	    <!-- endbuild -->
 	<!-- mergeTo -->
 </body>
