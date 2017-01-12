@@ -6,6 +6,10 @@ var gulp = require('gulp'),
 	base64 = require('gulp-base64'),
 	cssnano = require('gulp-cssnano'),
 	replace = require('gulp-replace'),
+	rev = require('gulp-rev'),
+	revCollector = require('gulp-rev-collector'),
+	gp_if = require('gulp-if'),
+	gp_uglify = require('gulp-uglify'),
 	useref = require('gulp-useref');
 require('es6-promise').polyfill();
 
@@ -15,6 +19,7 @@ var paths = {
   src_sass : 'src/main/webapp/static/sass/**/*.scss',
   src_js : 'src/main/webapp/static/javascript/',
   plugin : 'src/main/webapp/static/plugin/',
+  target_rev : 'src/main/webapp/static/rev/',
   target_html : 'src/main/webapp/WEB-INF/view/',
   target_css : 'src/main/webapp/static/css/',
   target_js : 'src/main/webapp/static/js/'
@@ -22,9 +27,11 @@ var paths = {
 
 /*js 合并管理*/
 gulp.task('html', function () {
-    return gulp.src(paths.src_html)
+    return gulp.src([paths.target_rev+"**/*.json",paths.src_html])
     	.pipe(replace('replace="gulp" replace-src="','src="'))
         .pipe(useref())
+        .pipe(gp_if('*.js', gp_uglify()))
+        .pipe(revCollector())
         .pipe(gulp.dest(paths.target_html));
 });
 
@@ -43,9 +50,11 @@ gulp.task('sass', function () {
         debug: true //启用日志到控制台。
     })) //将图片编辑为base64
 	.pipe(sourcemaps.write('.')) //加入源方便调试
-    .pipe(gulp.dest(paths.target_css));//输出到css文件夹
+	.pipe(rev())
+    .pipe(gulp.dest(paths.target_css))//输出到css文件夹
+  	.pipe(rev.manifest())
+  	.pipe(gulp.dest(paths.target_rev+"css"));
 });
-
 
 gulp.task('test', ['sass']);
 gulp.task('production', ['html']);

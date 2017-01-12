@@ -28,7 +28,6 @@
     <project.build.npm.version>1.4.12</project.build.npm.version>
     <!-- 配置项目编码为UTF-8 -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
-    <yuicompressor.version>1.5.1</yuicompressor.version>
   </properties>
   
   <dependencies>
@@ -201,42 +200,6 @@
     <finalName>zzq-back</finalName>
     <plugins>
        <plugin>
-				<!-- YUI Compressor Maven压缩插件 -->
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>yuicompressor-maven-plugin</artifactId>
-				<version>${yuicompressor.version}</version>
-				<executions>
-					<execution>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>compress</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<!-- 读取js,css文件采用UTF-8编码 -->
-					<encoding>UTF-8</encoding>
-					<!-- 不显示js可能的错误 -->
-					<jswarn>false</jswarn>
-					<!-- 强制压缩 -->
-					<force>true</force>
-					<!-- 在指定的列号后插入新行 -->
-					<linebreakpos>-1</linebreakpos>
-					<!-- 压缩之前先执行聚合文件操作 -->
-					<preProcessAggregates>false</preProcessAggregates>
-					<!-- 压缩后保存文件后缀 无后缀 -->
-					<nosuffix>true</nosuffix>
-					<!-- 源目录，即需压缩的根目录 -->
-					<sourceDirectory>src/main/webapp/static</sourceDirectory>
-					<!-- 压缩js和css文件 -->
-					<includes>
-						<include>js/**/*.js</include>
-					</includes>
-					<!-- 压缩后输出文件目录 -->
-					<outputDirectory>${project.build.directory}/${project.build.finalName}/static</outputDirectory>
-				</configuration>
-			</plugin>
-       <plugin>
 			<groupId>com.google.code.maven-replacer-plugin</groupId>
 			<artifactId>replacer</artifactId>
 			<version>1.5.2</version>
@@ -285,7 +248,7 @@
 			<version>2.4</version>
 			<configuration>
 				<!-- 打包前已经通过工具生成了，打包时不能再打包 -->
-				<warSourceExcludes>WEB-INF/view/,static/js/**/*.js</warSourceExcludes>
+				<warSourceExcludes>WEB-INF/view/</warSourceExcludes>
 			</configuration>
 		</plugin>
        
