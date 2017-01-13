@@ -6,10 +6,10 @@ var gulp = require('gulp'),
 	base64 = require('gulp-base64'),
 	cssnano = require('gulp-cssnano'),
 	replace = require('gulp-replace'),
-	rev = require('gulp-rev'),
-	revCollector = require('gulp-rev-collector'),
 	gp_if = require('gulp-if'),
 	gp_uglify = require('gulp-uglify'),
+	gulp_rev = require('gulp-rev-append'),
+	assetRev = require('gulp-asset-rev'),
 	useref = require('gulp-useref');
 require('es6-promise').polyfill();
 
@@ -28,14 +28,25 @@ var paths = {
 /*js 合并管理*/
 gulp.task('html', function () {
     return gulp.src([paths.target_rev+"**/*.json",paths.src_html])
+    	.pipe(gp_if('*.jsp', gulp_rev()))
     	.pipe(replace('replace="gulp" replace-src="','src="'))
         .pipe(useref())
         .pipe(gp_if('*.js', gp_uglify()))
-        .pipe(revCollector())
         .pipe(gulp.dest(paths.target_html));
 });
 
-gulp.task('sass', function () {
+/*测试环境下对sass进行编译*/
+gulp.task('sass-test', function () {
+  return gulp.src(paths.src_sass)//编译的文件
+  	.pipe(sourcemaps.init())//开始注入前缀
+	.pipe(sass()) //编译scss文件
+	.pipe(autoprefixer()) //加入前缀
+	.pipe(sourcemaps.write('.')) //加入源方便调试
+    .pipe(gulp.dest(paths.target_css));//输出到css文件夹
+});
+
+/*生产环境下对sass进行编译*/
+gulp.task('sass-production', function () {
   return gulp.src(paths.src_sass)//编译的文件
   	.pipe(sourcemaps.init())//开始注入前缀
 	.pipe(sass()) //编译scss文件
@@ -49,13 +60,11 @@ gulp.task('sass', function () {
         deleteAfterEncoding: false, //是否保留原来的图片false表示保留
         debug: true //启用日志到控制台。
     })) //将图片编辑为base64
+    .pipe(assetRev())
 	.pipe(sourcemaps.write('.')) //加入源方便调试
-	.pipe(rev())
-    .pipe(gulp.dest(paths.target_css))//输出到css文件夹
-  	.pipe(rev.manifest())
-  	.pipe(gulp.dest(paths.target_rev+"css"));
+    .pipe(gulp.dest(paths.target_css));//输出到css文件夹
 });
 
-gulp.task('test', ['sass']);
-gulp.task('production', ['html']);
+gulp.task('test', ['sass-test']);
+gulp.task('production', ['sass-production','html']);
 gulp.task('default', ['test']);
