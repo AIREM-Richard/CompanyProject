@@ -10,7 +10,7 @@
 <meta name="renderer" content="webkit">
 <title>用户信息管理页面</title>
 <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="${ctx}/static/css/base.css">
+<link rel="stylesheet" href="${ctx}/static/css/base.css?rev=@@hash">
 </head>
 <body>
   <div class="table-box">
@@ -20,7 +20,7 @@
    	    <table width="100%">
     	    <tbody>
 	     	    <tr>
-		      	    <td width="30"><img src="${ctx }/static/img/main/icon_search.png"></td>
+		      	    <td width="30"><img src="${ctx}/static/img/main/icon_search.png?rev=@@hash"></td>
 		      	    <td width="80">姓名：</td>
 		      	    <td><input type="text" name="queryName" style="width:90%" value="${customerInfo.name }"></td>
 		      	    <td width="80">性别：</td>

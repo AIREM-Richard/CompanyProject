@@ -10,7 +10,7 @@
 <meta name="renderer" content="webkit">
 <title>会计后台管理系统</title>
 <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="${ctx}/static/css/main.css">
+<link rel="stylesheet" href="${ctx}/static/css/main.css?rev=@@hash">
 </head>
 <body class="layout-boxed">
 	<div class="container">

@@ -10,14 +10,14 @@
 <meta name="renderer" content="webkit">
 <title>登录</title>
 <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="${ctx}/static/css/login.css">
+<link rel="stylesheet" href="${ctx}/static/css/login.css?rev=@@hash">
 </head>
 <body>
 	<div id="login_warp">
 		<div class="hd_login">
 		    <div class="hder_login">
 			    <a class="login_logo">
-			    	<img src="${ctx }/static/img/login/logo.png">
+			    	<img src="${ctx}/static/img/login/logo.png?rev=@@hash">
 			    </a>
 		    </div>
 	    </div>
