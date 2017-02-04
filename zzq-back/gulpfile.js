@@ -30,9 +30,9 @@ var paths = {
 gulp.task('html', function () {
     return gulp.src([paths.target_rev+"**/*.json",paths.src_html])
     	.pipe(gp_if('*.jsp', gulp_rev()))
-    	.pipe(gp_if('*.jsp', cleanhtml()))
     	.pipe(replace('replace="gulp" replace-src="','src="'))
         .pipe(useref())
+        .pipe(gp_if('*.jsp', cleanhtml()))
         .pipe(gp_if('*.js', gp_uglify()))
         .pipe(gulp.dest(paths.target_html));
 });
