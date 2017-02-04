@@ -10,6 +10,7 @@ var gulp = require('gulp'),
 	gp_uglify = require('gulp-uglify'),
 	gulp_rev = require('gulp-rev-append'),
 	assetRev = require('gulp-asset-rev'),
+	cleanhtml = require('gulp-cleanhtml'),
 	useref = require('gulp-useref');
 require('es6-promise').polyfill();
 
@@ -29,6 +30,7 @@ var paths = {
 gulp.task('html', function () {
     return gulp.src([paths.target_rev+"**/*.json",paths.src_html])
     	.pipe(gp_if('*.jsp', gulp_rev()))
+    	.pipe(gp_if('*.jsp', cleanhtml()))
     	.pipe(replace('replace="gulp" replace-src="','src="'))
         .pipe(useref())
         .pipe(gp_if('*.js', gp_uglify()))

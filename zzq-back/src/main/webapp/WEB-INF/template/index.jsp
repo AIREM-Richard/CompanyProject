@@ -66,7 +66,7 @@
 		</div>
 	</div>
 	
-	<!-- mergeTo:${ctx}/static/js/main.js -->
+	<!--# mergeTo:${ctx}/static/js/main.js -->
 		<script src="${ctx }/static/plugin/jquery/1.11.3/jquery.min.js"></script>
 		<script src="${ctx }/static/javascript/common.js"></script>
 		<script src="${ctx }/static/javascript/main.js"></script>
@@ -75,6 +75,6 @@
 		<script replace="gulp" replace-src="../../static/javascript/common.js"></script>
 		<script replace="gulp" replace-src="../../static/javascript/main.js"></script>
 	    <!-- endbuild -->
-	<!-- mergeTo -->
+	<!--# mergeTo -->
 </body>
 </html>

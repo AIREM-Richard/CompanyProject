@@ -226,7 +226,7 @@
 					<replacement>
 						<token>
 	                  <![CDATA[
-	                  <!-- mergeTo:([^\s]*) -->(.*?)<!-- mergeTo -->
+	                  <!--# mergeTo:([^\s]*) -->(.*?)<!--# mergeTo -->
 	                  ]]>
 						</token>
 						<value>
