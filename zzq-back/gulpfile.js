@@ -30,8 +30,10 @@ var paths = {
 gulp.task('html', function () {
     return gulp.src([paths.target_rev+"**/*.json",paths.src_html])
     	.pipe(gp_if('*.jsp', gulp_rev()))
-    	.pipe(replace('replace="gulp" replace-src="','src="'))
-        .pipe(useref())
+    	.pipe(replace('replace="gulp" src="${ctx}','src="'))
+        .pipe(useref({
+            searchPath: 'src/main/webapp',
+        }))
         .pipe(gp_if('*.jsp', cleanhtml()))
         .pipe(gp_if('*.js', gp_uglify()))
         .pipe(gulp.dest(paths.target_html));
@@ -50,10 +52,7 @@ gulp.task('sass-test', function () {
 /*生产环境下对sass进行编译*/
 gulp.task('sass-production', function () {
   return gulp.src(paths.src_sass)//编译的文件
-  	.pipe(sourcemaps.init())//开始注入前缀
 	.pipe(sass()) //编译scss文件
-	.pipe(autoprefixer()) //加入前缀
-	.pipe(cssnano()) //Minify CSS with cssnano
 	.pipe(base64({
         //baseDir: paths.src_static,绝对路径时设置
         extensions: ['svg', 'png', /\.jpg#datauri$/i],
@@ -63,7 +62,8 @@ gulp.task('sass-production', function () {
         debug: true //启用日志到控制台。
     })) //将图片编辑为base64
     .pipe(assetRev())
-	.pipe(sourcemaps.write('.')) //加入源方便调试
+	.pipe(autoprefixer()) //加入前缀
+	.pipe(cssnano()) //Minify CSS with cssnano
     .pipe(gulp.dest(paths.target_css));//输出到css文件夹
 });
 

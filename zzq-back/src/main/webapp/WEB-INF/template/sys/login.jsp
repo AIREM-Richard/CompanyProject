@@ -64,13 +64,10 @@
 		</div>
 	</div>
 	<!--# mergeTo:${ctx}/static/js/login.js -->
-		<script src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
-		<script src="${ctx}/static/javascript/common.js"></script>
-		<script src="${ctx}/static/javascript/login.js"></script>
 		<!-- build:js ../../static/js/login.js -->
-	    <script replace="gulp" replace-src="../../../static/plugin/jquery/1.11.3/jquery.min.js"></script>
-		<script replace="gulp" replace-src="../../../static/javascript/common.js"></script>
-		<script replace="gulp" replace-src="../../../static/javascript/login.js"></script> 
+	    <script replace="gulp" src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
+		<script replace="gulp" src="${ctx}/static/javascript/common.js"></script>
+		<script replace="gulp" src="${ctx}/static/javascript/login.js"></script> 
 	    <!-- endbuild -->
 	<!--# mergeTo -->
 </body>

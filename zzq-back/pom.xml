@@ -248,7 +248,7 @@
 			<version>2.4</version>
 			<configuration>
 				<!-- 打包前已经通过工具生成了，打包时不能再打包 -->
-				<warSourceExcludes>WEB-INF/view/</warSourceExcludes>
+				<warSourceExcludes>WEB-INF/view/,static/css/**/*.css.map</warSourceExcludes>
 			</configuration>
 		</plugin>
        
