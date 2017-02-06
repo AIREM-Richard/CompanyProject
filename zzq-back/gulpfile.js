@@ -32,7 +32,7 @@ gulp.task('html', function () {
     	.pipe(gp_if('*.jsp', gulp_rev()))
     	.pipe(replace('replace="gulp" src="${ctx}','src="'))
         .pipe(useref({
-            searchPath: 'src/main/webapp',
+            searchPath: paths.webapp
         }))
         .pipe(gp_if('*.jsp', cleanhtml()))
         .pipe(gp_if('*.js', gp_uglify()))
