@@ -20,7 +20,6 @@ var paths = {
   src_sass : 'src/main/webapp/static/sass/**/*.scss',
   src_js : 'src/main/webapp/static/javascript/',
   plugin : 'src/main/webapp/static/plugin/',
-  target_rev : 'src/main/webapp/static/rev/',
   target_html : 'src/main/webapp/WEB-INF/view/',
   target_css : 'src/main/webapp/static/css/',
   target_js : 'src/main/webapp/static/js/'
@@ -28,7 +27,7 @@ var paths = {
 
 /*js 合并管理*/
 gulp.task('html', function () {
-    return gulp.src([paths.target_rev+"**/*.json",paths.src_html])
+    return gulp.src(paths.src_html)
     	.pipe(gp_if('*.jsp', gulp_rev()))
     	.pipe(replace('replace="gulp" src="${ctx}','src="'))
         .pipe(useref({
