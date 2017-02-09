@@ -39,10 +39,17 @@
 					<li><div class="dan">
 							<a href="#"><span class="left_menu01"></span>阅卷准备</a>
 						</div></li>
-					<li><div class="dan">
-							<a href="#"><span class="left_menu02"></span>成绩统计</a>
-						</div></li>
-					<li class="current"><div class="dan">
+					<li>
+						<div class="dan">
+							<a href="#"><span class="left_menu02"></span>销售统计</a>
+						</div>
+						<ul class="sub_menu">
+							<span class="top_arr"></span>
+							<li class="first"><a href="${ctx}/contract/list">合同管理</a></li>
+						</ul>
+					</li>
+					<li>
+						<div class="dan">
 							<a href="#"><span class="left_menu03"></span>系统设置</a>
 						</div>
 						<ul class="sub_menu">
@@ -53,7 +60,8 @@
 							<li><a href="#">科别信息设定</a></li>
 							<li><a href="#">不参加统计规则设定</a></li>
 							<li><a href="#">上报DBF参数设定</a></li>
-						</ul></li>
+						</ul>
+					</li>
 					<li><div class="dan">
 							<a href="#"><span class="left_menu04"></span>权限设置</a>
 						</div></li>
