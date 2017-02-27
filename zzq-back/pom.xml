@@ -24,7 +24,7 @@
  	<servlet.version>3.1.0</servlet.version>
  	<shiro.version>1.2.4</shiro.version>
  	<project.build.frontend.version>1.2</project.build.frontend.version>
-    <project.build.node.version>v0.10.29</project.build.node.version>
+    <project.build.node.version>v0.10.40</project.build.node.version>
     <project.build.npm.version>1.4.12</project.build.npm.version>
     <!-- 配置项目编码为UTF-8 -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
